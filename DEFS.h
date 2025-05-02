@@ -12,9 +12,26 @@ enum ActionType //The actions supported (you can add more if needed)
 	TO_PLAY,		//Switch interface to Play mode
 	EMPTY,			//A click on empty place in the toolbar
 	DRAWING_AREA,	//A click on the drawing area
-	STATUS			//A click on the status bar
-
-	///TODO: Add the other action types of the two modes
+	STATUS,			//A click on the status bar
+	DRAW_CIRCLE,
+	TO_SELECT,
+	TO_DELETE,
+	TO_COPY,
+	TO_SWAP,
+	TO_CLEAR,
+	TO_ROTATE,
+	TO_CUT,
+	TO_PASTE,
+	TO_SAVE,
+	TO_LOAD,
+	DRAW_SQUARE,
+	DRAW_HEXAGON,
+	DRAW_TRIANGLE,
+	MISSING,
+	MATCH,
+	REDO,
+	UNDO,
+						///TODO: Add the other action types of the two modes
 };
 
 struct Point	//To be used for figures points
