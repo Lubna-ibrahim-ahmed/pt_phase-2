@@ -1,4 +1,6 @@
 #include "CFigure.h"
+#include "..\Actions\AddSelectAction.h"
+
 
 CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
@@ -19,5 +21,10 @@ void CFigure::ChngFillClr(color Fclr)
 {	
 	FigGfxInfo.isFilled = true;
 	FigGfxInfo.FillClr = Fclr; 
+}
+
+void CFigure::PrintInfo(Output* pOut) {
+	//to be continued 
+
 }
 

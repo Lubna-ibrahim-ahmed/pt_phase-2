@@ -1,4 +1,5 @@
 #include "CRectangle.h"
+#include "CFigure.h"
 
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
@@ -6,9 +7,15 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 	Corner2 = P2;
 }
 	
-
-void CRectangle::Draw(Output* pOut) const
+bool CRectangle::IsInside(Point P) const
 {
+	if ((P.x >= Corner1.x && P.x <= Corner2.x) && (P.y >= Corner1.x && P.y <= Corner2.y))
+	{
+		return true;
+	}
+}
+void CRectangle::Draw(Output* pOut) const
+{   
 	//Call Output::DrawRect to draw a rectangle on the screen	
-	pOut->DrawRect(Corner1, Corner2, FigGfxInfo, Selected);
+	pOut->DrawRect(Corner1, Corner2, FigGfxInfo, IsSelected());
 }

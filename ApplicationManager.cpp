@@ -4,6 +4,8 @@
 #include "Actions\AddHexagonAction.h"
 #include "Actions\AddTriAction.h"
 #include "Actions\AddSquareAction.h"
+#include "Actions\AddSelectAction.h"
+#include "Figures/CFigure.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -34,7 +36,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
-	{
+	{   
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
 
@@ -54,7 +56,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DRAW_TRIANGLE:
 			pAct = new AddTriAction(this);
 			break;
-		
+		case TO_SELECT:
+			pAct = new AddSelectAction(this);
+			break;
+
 
 
 		case EXIT:
@@ -87,6 +92,18 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
 {
+	Point P;
+	P.x = x;
+	P.y = y;
+
+	for (int i = FigCount - 1; i >= 0; i--)    //FigCount-1 since the FigCount array starts from 0
+	{
+		if (FigList[i] != NULL && FigList[i]->IsInside(P) == true)
+		{
+			return FigList[i];
+		}
+	}
+
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
 
@@ -96,6 +113,26 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 
 	return NULL;
 }
+void ApplicationManager::PrintFigureInfo()
+{
+	int rectcount = 0, tricount = 0, hexcount = 0, circlecount = 0, selectedcount = 0;
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i]->IsSelected() == true)
+		{
+			selectedcount++;       ////lesa mesh metkamela
+
+		}
+	}
+}
+void ApplicationManager::unselectall()
+{
+	for (int i = FigCount - 1; i >= 0; i--)  //unselecting all the selected figures since the user pressed in an empty region, in a function
+	{
+		FigList[i]->SetSelected(false);
+	}
+}
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
