@@ -34,7 +34,7 @@ void AddRectAction::ReadActionParameters()
 
 }
 
-//Execute the action
+//Execute the action no error
 void AddRectAction::Execute() 
 {
 	//This action needs to read some parameters first
