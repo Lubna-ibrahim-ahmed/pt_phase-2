@@ -36,6 +36,22 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
 			break;
+		case DRAW_CIRCLE:
+
+			break;
+		case DRAW_SQUARE:
+
+			break;
+
+		case DRAW_HEXAGON:
+
+			break;
+
+		case DRAW_TRIANGLE:
+
+			break;
+		
+
 
 		case EXIT:
 			///create ExitAction here
