@@ -21,13 +21,13 @@ void AddHexagonAction::ReadActionParameters()
 
 	pIn->GetPointClicked(P1.x, P1.y);
 
+	HexaGfxInfo.FillClr = pIn->Getchar(pOut);
 
 
-	RectGfxInfo.isFilled = false;	//default is not filled
+	HexaGfxInfo.isFilled = true;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
-	RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
-	RectGfxInfo.FillClr = pOut->getCrntFillColor();
-
+	HexaGfxInfo.DrawClr = pOut->getCrntDrawColor();
+	
 	pOut->ClearStatusBar();
 
 }
@@ -39,8 +39,8 @@ void AddHexagonAction::Execute()
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	CHexagon* R = new CHexagon(P1, RectGfxInfo);
+	CHexagon* H = new CHexagon(P1, HexaGfxInfo);
 
 	//Add the rectangle to the list of figures
-	pManager->AddFigure(R);
+	pManager->AddFigure(H);
 }

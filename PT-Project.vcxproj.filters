@@ -161,6 +161,7 @@
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\ClearAllAction.cpp" />
     <ClCompile Include="Actions\PlayAction.cpp" />
+    <ClCompile Include="Actions\AddMatchAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -261,6 +262,7 @@
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\ClearAllAction.h" />
     <ClInclude Include="Actions\PlayAction.h" />
+    <ClInclude Include="Actions\AddMatchAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

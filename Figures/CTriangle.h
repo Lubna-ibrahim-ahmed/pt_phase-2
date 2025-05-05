@@ -9,6 +9,8 @@ private:
 	Point Corner3;
 
 public:
+	string ID = "CTriangle";
+	string getID() override { return ID; }
 	CTriangle();
 	CTriangle(Point, Point,Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;

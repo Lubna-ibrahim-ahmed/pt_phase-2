@@ -26,10 +26,10 @@ void AddCircleAction::ReadActionParameters()
 	
 	pIn->GetPointClicked(P2.x, P2.y);
 
-	RectGfxInfo.isFilled = false;	//default is not filled
+	CircleGfxInfo.isFilled = true;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
-	RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
-	RectGfxInfo.FillClr = pOut->getCrntFillColor();
+	CircleGfxInfo.DrawClr = pOut->getCrntDrawColor();
+	CircleGfxInfo.FillClr = pIn->Getchar(pOut);
 
 	pOut->ClearStatusBar();
 
@@ -42,8 +42,8 @@ void AddCircleAction::Execute()
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	CCircle* R = new CCircle(P1, P2, RectGfxInfo);
+	CCircle* C = new CCircle(P1, P2, CircleGfxInfo);
 
 	//Add the rectangle to the list of figures
-	pManager->AddFigure(R);
+	pManager->AddFigure(C);
 }

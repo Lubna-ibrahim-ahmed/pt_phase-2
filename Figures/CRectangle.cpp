@@ -69,3 +69,4 @@ void CRectangle::Load(ifstream& InFile)
 		FigGfxInfo.FillClr = StringToColor(fillColor);
 	}
 }
+

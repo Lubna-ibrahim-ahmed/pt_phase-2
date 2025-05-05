@@ -15,6 +15,7 @@
 #include "Figures/CSquare.h"
 #include "Actions/ClearAllAction.h"
 #include "Actions/PlayAction.h"
+#include "Actions\AddMatchAction.h"
 #include <fstream>
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -136,6 +137,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case TO_PLAY:
 			pAct = new PlayAction(this);
 			break;
+		case MISSING:
+
+			break;
+		case MATCH:
+			pAct = new AddMatchAction(this);
+			break;
+
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}
@@ -157,6 +165,7 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if(FigCount < MaxFigCount )
 		FigList[FigCount++] = pFig;	
+	
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
@@ -190,7 +199,7 @@ void ApplicationManager::PrintFigureInfo()
 	{
 		if (FigList[i]->IsSelected() == true)
 		{
-			selectedcount++;       ////lesa mesh metkamela
+			selectedcount++;      
 
 		}
 	}

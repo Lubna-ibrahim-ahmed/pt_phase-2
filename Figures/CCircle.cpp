@@ -14,6 +14,7 @@ CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxIn
 double getDistance(Point P1, Point P2)
 	{
 		return sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2));
+	
 	}
 bool CCircle::IsInside(Point P) const
 {

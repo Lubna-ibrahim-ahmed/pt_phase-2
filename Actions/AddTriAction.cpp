@@ -33,10 +33,10 @@ void AddTriAction::ReadActionParameters()
 
 
 
-	RectGfxInfo.isFilled = false;	//default is not filled
+	TriGfxInfo.isFilled = false;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
-	RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
-	RectGfxInfo.FillClr = pOut->getCrntFillColor();
+	TriGfxInfo.DrawClr = pOut->getCrntDrawColor();
+	TriGfxInfo.FillClr = pIn->Getchar(pOut);
 
 	pOut->ClearStatusBar();
 
@@ -49,8 +49,8 @@ void AddTriAction::Execute()
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	CTriangle* R = new CTriangle(P1, P2,P3,RectGfxInfo);
+	CTriangle* T = new CTriangle(P1, P2,P3,TriGfxInfo);
 
 	//Add the rectangle to the list of figures
-	pManager->AddFigure(R);
+	pManager->AddFigure(T);
 }

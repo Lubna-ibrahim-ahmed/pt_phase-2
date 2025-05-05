@@ -7,13 +7,12 @@ class AddHexagonAction : public Action
 {
 private:
 	Point P1;
-	GfxInfo RectGfxInfo;
+	GfxInfo HexaGfxInfo;
 public:
 	AddHexagonAction(ApplicationManager* pApp);
 
 	virtual void ReadActionParameters();
 
-	
 	virtual void Execute();
 
 

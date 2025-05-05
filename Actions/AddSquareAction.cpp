@@ -22,10 +22,10 @@ void AddSquareAction::ReadActionParameters()
 	pIn->GetPointClicked(P1.x, P1.y);
 
 
-	RectGfxInfo.isFilled = false;	//default is not filled
+	SquareGfxInfo.isFilled = true;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
-	RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
-	RectGfxInfo.FillClr = pOut->getCrntFillColor();
+	SquareGfxInfo.DrawClr = pOut->getCrntDrawColor();
+	SquareGfxInfo.FillClr = pIn->Getchar(pOut);
 
 	pOut->ClearStatusBar();
 
@@ -38,8 +38,8 @@ void AddSquareAction::Execute()
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	CSquare* R = new CSquare(P1, RectGfxInfo);
+	CSquare* S = new CSquare(P1, SquareGfxInfo);
 
 	//Add the rectangle to the list of figures
-	pManager->AddFigure(R);
+	pManager->AddFigure(S);
 }
