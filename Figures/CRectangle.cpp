@@ -6,14 +6,21 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 	Corner1 = P1;
 	Corner2 = P2;
 }
-	
+
 bool CRectangle::IsInside(Point P) const
 {
-	if ((P.x >= Corner1.x && P.x <= Corner2.x) && (P.y >= Corner1.x && P.y <= Corner2.y))
+	double left = min(Corner1.x, Corner2.x);
+	double right = max(Corner1.x, Corner2.x);
+	double top = min(Corner1.y, Corner2.y);
+	double bottom = max(Corner1.y, Corner2.y);
+	if ((P.x >= left && P.x <= right) && (P.y >= top && P.y <= bottom))
 	{
 		return true;
 	}
+	else
+		return false;
 }
+
 void CRectangle::Draw(Output* pOut) const
 {   
 	//Call Output::DrawRect to draw a rectangle on the screen	

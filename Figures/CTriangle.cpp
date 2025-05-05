@@ -10,5 +10,5 @@ CTriangle::CTriangle(Point P1, Point P2,Point P3 , GfxInfo FigureGfxInfo) :CFigu
 void CTriangle::Draw(Output* pOut) const
 {
 	//Call Output::DrawRect to draw a rectangle on the screen	
-	pOut->DrawTri(Corner1, Corner2,Corner3, FigGfxInfo, Selected);
+	pOut->DrawTri(Corner1, Corner2,Corner3, FigGfxInfo, IsSelected());
 }

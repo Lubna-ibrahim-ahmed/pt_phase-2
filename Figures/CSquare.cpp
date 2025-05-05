@@ -7,5 +7,5 @@ CSquare::CSquare(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 }
 void CSquare::Draw(Output* pOut) const
 {
-	pOut->DrawSq(Center, FigGfxInfo, Selected);
+	pOut->DrawSq(Center, FigGfxInfo, IsSelected());
 }

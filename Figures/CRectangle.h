@@ -11,7 +11,7 @@ private:
 public:
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	virtual void Draw(Output* pOut) const;
-	bool CRectangle::IsInside(Point P) const;
+	bool IsInside(Point P) const override;
 };
 
 #endif

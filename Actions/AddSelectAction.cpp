@@ -8,24 +8,28 @@
 AddSelectAction::AddSelectAction(ApplicationManager* pApp) :Action(pApp)
 {
 }
-void AddSelectAction::selectfigure(Point P)
+void AddSelectAction::selectfigure(Point point)
 {
-	
-	CFigure* clickedfigure = pManager->GetFigure(P.x, P.y);
+	Output* pOut = pManager->GetOutput();
+	CFigure* clickedfigure = pManager->GetFigure(point.x, point.y);
 	if (clickedfigure == nullptr)
 	{
 		pManager->unselectall(); //unselecting all the figures since the user presses in empty area
 		pManager->UpdateInterface();
+		pOut->PrintMessage("Figures unselected");
 		return;
 	}
 	if (clickedfigure->IsSelected() == true)
 	{
 		clickedfigure->SetSelected(false);      //unselect the selected figure sice it was already selected 
+		pOut->PrintMessage("Figure unselected");
 	}
 	else
 	{
 		clickedfigure->SetSelected(true);      //selecting another shape with the already selected shape so selecting multiple shapes
+		pOut->PrintMessage("Figure selected");
 	}
+
 	pManager->UpdateInterface();
 
 

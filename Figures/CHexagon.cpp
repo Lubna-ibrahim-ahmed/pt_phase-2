@@ -8,5 +8,5 @@ CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 }
 void CHexagon::Draw(Output* pOut) const
 {
-	pOut->DrawHex(Center,FigGfxInfo, Selected);
+	pOut->DrawHex(Center,FigGfxInfo, IsSelected());
 }

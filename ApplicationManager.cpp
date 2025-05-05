@@ -111,7 +111,7 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	//Add your code here to search for a figure given a point x,y	
 	//Remember that ApplicationManager only calls functions do NOT implement it.
 
-	return NULL;
+	return nullptr;
 }
 void ApplicationManager::PrintFigureInfo()
 {
@@ -131,6 +131,7 @@ void ApplicationManager::unselectall()
 	{
 		FigList[i]->SetSelected(false);
 	}
+	UpdateInterface();
 }
 
 //==================================================================================//
@@ -141,7 +142,9 @@ void ApplicationManager::unselectall()
 void ApplicationManager::UpdateInterface() const
 {	
 	for(int i=0; i<FigCount; i++)
+		
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
+
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input
