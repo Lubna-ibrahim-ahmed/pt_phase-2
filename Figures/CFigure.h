@@ -3,6 +3,7 @@
 
 #include "..\defs.h"
 #include "..\GUI\Output.h"
+#include <fstream>
 
 //Base class for all figures
 class CFigure
@@ -34,7 +35,10 @@ public:
 	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
 	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 
-	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
+	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
+
+	string CFigure::ColorToString(color c);
+	color CFigure::StringToColor(string str);
 };
 
 #endif

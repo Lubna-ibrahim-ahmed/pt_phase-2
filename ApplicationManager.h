@@ -41,6 +41,10 @@ public:
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
+	// -- Clipboard Management Functions
+	void SaveAll(ofstream& File);
+	void LoadAll(ifstream& File);
+	void clearFigures(); //function to clear all the figures
 };
 
 #endif
