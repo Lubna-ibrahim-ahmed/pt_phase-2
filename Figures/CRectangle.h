@@ -3,6 +3,8 @@
 
 #include "CFigure.h"
 
+#include "CFigure.h"
+#include<string>
 class CRectangle : public CFigure
 {
 private:
@@ -15,6 +17,19 @@ public:
 	virtual bool IsInside(Point P) const;
 	virtual void MoveTo(Point newCenter);
 
+	string ID = "CRectangle";
+	string getID() override { return ID; }
+	CRectangle();
+	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
+	virtual void Draw(Output* pOut) const;
+	bool IsInside(Point P) const override;
+	void Save(ofstream& OutFile) override;
+	void Load(ifstream& InFile) override;
+	Point getmainposition() const override;
+	void setmainpos(Point p) override;
+	color GetDrawColor() override {
+		return FigGfxInfo.FillClr;
+	}
 };
 
 #endif

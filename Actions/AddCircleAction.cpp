@@ -31,6 +31,7 @@ void AddCircleAction::ReadActionParameters()
 	RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	RectGfxInfo.FillClr = pOut->getCrntFillColor();
 
+
 	pOut->ClearStatusBar();
 
 }

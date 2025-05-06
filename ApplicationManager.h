@@ -57,6 +57,12 @@ public:
 
 		void DeleteFigure(CFigure* pFig);
 
+	// -- Clipboard Management Functions
+	void SaveAll(ofstream& File);
+	void LoadAll(ifstream& File);
+	void clearFigures(); //function to clear all the figures
+	int getfigurecount(); //getter to get the count of the figures
+	CFigure* getfiglistindex(int i) const;//getter to get the index of FigList since its private
 };
 
 #endif

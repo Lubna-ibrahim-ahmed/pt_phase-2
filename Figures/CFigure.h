@@ -25,6 +25,9 @@ public:
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
 
+	virtual string getID() {
+		return ID;
+	}
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 
@@ -35,5 +38,18 @@ public:
 	virtual void MoveTo(Point newCenter) = 0;
 
 	};
+	virtual Point getmainposition() const = 0;
+	virtual void setmainpos(Point p) = 0;
+
+	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
+	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
+
+	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
+
+	string CFigure::ColorToString(color c);
+	color CFigure::StringToColor(string str);
+
+	virtual color CFigure::GetDrawColor();
+};
 
 #endif

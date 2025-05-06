@@ -11,6 +11,16 @@
 #include "Actions\DeleteAction.h"
 #include "Figures/CFigure.h"
 #include"GUI/Output.h"
+#include "Figures/CCircle.h"
+#include "Figures/CRectangle.h"
+#include "Figures/CTriangle.h"
+#include "Figures/CHexagon.h"
+#include "Figures/CSquare.h"
+#include "Actions/ClearAllAction.h"
+#include "Actions/PlayAction.h"
+#include <fstream>
+#include "Actions/SwapAction.h"
+#include "Actions\AddMatchAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -35,6 +45,65 @@ ActionType ApplicationManager::GetUserAction() const
 	//Ask the input to get the action from the user.
 	return pIn->GetUserAction();		
 }
+////////////////////////////////////////////////////////////////////////////////////
+
+void ApplicationManager::SaveAll(ofstream& OutFile) {
+	OutFile << FigCount << endl; // Save the number of figures
+
+	for (int i = 0; i < FigCount; i++) {
+		FigList[i]->Save(OutFile); // Call Save for each figure
+	}
+}
+
+void ApplicationManager::LoadAll(ifstream& InFile) {
+	clearFigures(); // Clear existing figures before loading new ones
+
+	int count;
+	InFile >> count; // Read the number of figures
+
+	for (int i = 0; i < count; i++) {
+		string figType;
+		InFile >> figType;
+
+		CFigure* pFig = nullptr;
+		
+		if (figType == "RECTANGLE") {
+			pFig = new CRectangle();
+		}
+		else if (figType == "CIRCLE") {
+			pFig = new CCircle();
+		}
+		else if (figType == "TRIANGLE") {
+			pFig = new CTriangle();
+		}
+		else if (figType == "HEXAGON") {
+			pFig = new CHexagon();
+		}
+		else if (figType == "SQUARE") {
+			pFig = new CSquare();
+		}
+		else {
+			continue; // Skip unknown figure types
+		}
+		
+		if (pFig) {
+			pFig->Load(InFile);
+			AddFigure(pFig); // Add the loaded figure to the list
+		}
+	}
+
+	UpdateInterface(); // Update the interface after loading
+}
+
+void ApplicationManager::clearFigures() {
+	for (int i = 0; i < FigCount; i++) {
+		delete FigList[i]; // Delete each figure
+		FigList[i] = nullptr; // Set the pointer to null
+	}
+	FigCount = 0; // Reset the figure count
+	UpdateInterface(); // Update the interface
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 //Creates an action and executes it
 void ApplicationManager::ExecuteAction(ActionType ActType) 
@@ -68,7 +137,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 
-
 		case EXIT:
 			///create ExitAction here
 			
@@ -87,6 +155,29 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case TO_DELETE:
 			pAct = new DeleteAction(this);
+		case TO_SAVE:
+			pAct = new SaveAction(this);
+			break;
+		case TO_LOAD:
+			pAct = new LoadAction(this);
+			break;
+		case TO_CLEAR:
+			pAct = new ClearAllAction(this);
+			break;
+		case TO_PLAY:
+			pAct = new PlayAction(this);
+			break;
+		case STATUS:	//a click on the status bar ==> no action
+			return;
+		case TO_SWAP:
+			pAct = new SwapAction(this);
+			break;
+			break;
+		case MISSING:
+
+			break;
+		case MATCH:
+			pAct = new AddMatchAction(this);
 			break;
 	}
 	
@@ -122,7 +213,6 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 			return FigList[i];
 		}
 	}
-
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
 
@@ -174,6 +264,19 @@ Input *ApplicationManager::GetInput() const
 //Return a pointer to the output
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
+int ApplicationManager::getfigurecount()
+{
+	return FigCount;
+}
+CFigure* ApplicationManager::getfiglistindex(int i) const
+{
+	if (i >= 0 && i <= FigCount)
+	{
+		return FigList[i];
+	}
+	else
+		return nullptr;
+}
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()

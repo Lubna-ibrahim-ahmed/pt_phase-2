@@ -24,3 +24,14 @@ void CFigure::ChngFillClr(color Fclr)
 }
 
 
+color CFigure::StringToColor(string str) {
+    if (str == "BLACK") return BLACK;
+    if (str == "RED") return RED;
+    if (str == "BLUE") return BLUE;
+    if (str == "GREEN") return GREEN;
+    if (str == "WHITE") return WHITE;
+    return BLACK; // Default color
+}
+ color CFigure::GetDrawColor() {
+    return FigGfxInfo.FillClr;
+}

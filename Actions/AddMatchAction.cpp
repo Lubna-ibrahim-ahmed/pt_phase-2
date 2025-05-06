@@ -50,7 +50,10 @@ void AddMatchAction::ReadActionParameters()
 		}
 		
 	}
-	if (selectedList[0]->getID() == selectedList[1]->getID()) {
+	if ((selectedList[0] != nullptr && selectedList[1] != nullptr)
+		&&(selectedList[0]->getID() == selectedList[1]->getID())
+		&&(selectedList[0]->GetDrawColor() == selectedList[1]->GetDrawColor()))
+	{
 
 		pOut->PrintMessage("Figures match");
 		selectedList[0]->SetSelected(false);

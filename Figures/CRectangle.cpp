@@ -34,3 +34,22 @@ void CRectangle::MoveTo(Point newCenter) {
 	Corner2.x = newCenter.x + width / 2;
 	Corner2.y = newCenter.y + height / 2;
 }
+
+Point CRectangle::getmainposition() const
+{
+	Point Center;
+	Center.x = (Corner1.x + Corner2.x) / 2;
+	Center.y = (Corner1.y + Corner2.y) / 2;
+	return Center;
+}
+
+void CRectangle::setmainpos(Point p)
+{
+	Point currentCenter = getmainposition();
+	int CX = p.x - currentCenter.x;
+	int CY = p.y - currentCenter.y;
+	Corner1.x += CX;
+	Corner1.y += CY;
+	Corner2.x += CX;
+	Corner2.y += CY;
+}
