@@ -7,7 +7,7 @@ class AddCircleAction : public Action
 private:
 	Point P1, P2; 
 	int Radius;
-	GfxInfo CircleGfxInfo;
+	GfxInfo RectGfxInfo;
 public:
 	AddCircleAction(ApplicationManager* pApp);
 

@@ -159,6 +159,10 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 	pWind->SetPen(UI.MsgColor, 50);
 	pWind->SetFont(20, BOLD , BY_NAME, "Arial");   
 	pWind->DrawString(10, UI.height - (int)(UI.StatusBarHeight/1.5), msg);
+	//Printed_message=msg;
+	const_cast<string&>(Printed_message) = msg;
+
+
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -167,21 +171,16 @@ color Output::getCrntDrawColor() const	//get current drawing color
 //////////////////////////////////////////////////////////////////////////////////////////
 
 color Output::getCrntFillColor() const	//get current filling color
-{	
-	
-	
-	
-	
-	return UI.FillColor;	
-
-
-
-
-}
+{	return UI.FillColor;	}
 //////////////////////////////////////////////////////////////////////////////////////////
 	
 int Output::getCrntPenWidth() const		//get current pen width
 {	return UI.PenWidth;	}
+
+string Output::getPrinted()
+{
+	return Printed_message;
+}
 
 //======================================================================================//
 //								Figures Drawing Functions								//

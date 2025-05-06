@@ -1,43 +1,32 @@
-#include "CHexagon.h"
-
-CHexagon::CHexagon() : CFigure(GfxInfo()) {
-	Center = { 0, 0 };
-}
+﻿#include "CHexagon.h"
 
 CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
+	
+
 }
 void CHexagon::Draw(Output* pOut) const
 {
 	pOut->DrawHex(Center,FigGfxInfo, IsSelected());
 }
+CFigure* CHexagon::figcopy() const {
+	return new CHexagon(*this);
+} //ساعات بتبقي كدا
 
-void CHexagon::Save(ofstream& OutFile)
+bool CHexagon::IsInside(Point P) const
 {
-	OutFile << "HEXAGON" << " ";
-	OutFile << ID << " " << Center.x << " " << Center.y << " ";
-	OutFile << ColorToString(FigGfxInfo.DrawClr) << " ";
-	if (FigGfxInfo.isFilled)
-		OutFile << ColorToString(FigGfxInfo.FillClr) << endl;
-	else
-		OutFile << "NO_FILL" << endl;
+
+	float dx = P.x - Center.x;
+	float dy = P.y - Center.y;
+
+	float distanceSquared = dx * dx + dy * dy;
+	float radius = 100;
+
+	return distanceSquared <= radius * radius;
 }
-
-void CHexagon::Load(ifstream& InFile)
+void CHexagon::MoveTo(Point newCenter)
 {
-	InFile >> ID >> Center.x >> Center.y;
-	string drawColor, fillColor;
-	InFile >> drawColor;
-	FigGfxInfo.DrawClr = StringToColor(drawColor);
-	InFile >> fillColor;
-	if (fillColor == "NO_FILL")
-	{
-		FigGfxInfo.isFilled = false;
-	}
-	else
-	{
-		FigGfxInfo.FillClr = StringToColor(fillColor);
-		FigGfxInfo.isFilled = true;
-	}
+	Center.x = newCenter.x;
+	Center.y = newCenter.y;
 }

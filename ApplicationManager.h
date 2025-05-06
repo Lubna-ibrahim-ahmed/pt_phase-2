@@ -1,4 +1,4 @@
-#ifndef APPLICATION_MANAGER_H
+﻿#ifndef APPLICATION_MANAGER_H
 #define APPLICATION_MANAGER_H
 
 #include "DEFS.h"
@@ -21,13 +21,14 @@ private:
 	Input *pIn;
 	Output *pOut;
 
-	CFigure* Clipboard;  //Pointer to copied/cut figure
-	
-
+	CFigure* Clipboard;  
+	CFigure* CutFigure;
+	CFigure* SelectedFigure; //ساعات بتبقي كدا
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
-	
+	void SetCutFigure(CFigure* fig) { CutFigure = fig; }
+	CFigure* GetCutFigure() const { return CutFigure; }
 	// -- Action-Related Functions
 	//Reads the input command from the user and returns the corresponding action type
 	ActionType GetUserAction() const;
@@ -41,10 +42,21 @@ public:
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
-	// -- Clipboard Management Functions
-	void SaveAll(ofstream& File);
-	void LoadAll(ifstream& File);
-	void clearFigures(); //function to clear all the figures
+	
+
+
+
+
+
+
+
+	void SetSelectedFigure(CFigure* pFig);//ساعات بتبقي كدا
+	CFigure* GetSelectedFigure() const;//ساعات بتبقي كدا
+	void SetClipboard(CFigure* fig);//ساعات بتبقي كدا
+	CFigure* GetClipboard() const;//ساعات بتبقي كدا
+
+		void DeleteFigure(CFigure* pFig);
+
 };
 
 #endif

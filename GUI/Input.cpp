@@ -98,6 +98,7 @@ string Input::GetString(Output* pO) const
 				case ITM_PLAYMODE: return TO_PLAY;
 				case ITM_EXIT: return EXIT;
 				
+			
 				default: return EMPTY;	//A click on empty place in desgin toolbar
 				}
 			}
@@ -124,23 +125,16 @@ string Input::GetString(Output* pO) const
 			      case ITM_MATCH: return MATCH;
 			      case ITM_DRAWMODE: return TO_DRAW;
 
-				  default: return EMPTY;	
+				default: return EMPTY;	
 				}
 			}
-			//[2] User clicks on the drawing area
-			if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
-			{
-				return DRAWING_AREA;
-			}
-			//[3] User clicks on the status bar
-			return STATUS;
 		}
 	  
 			///TODO:_____done
 			//perform checks similar to Draw mode checks above
 			//and return the correspoding action
 			return TO_PLAY;	//just for now. This should be updated
-	}	
+		}	
 	void Input::FlushMouseQueue() const
 	{
 		pWind->FlushMouseQueue();	//Flush key queue

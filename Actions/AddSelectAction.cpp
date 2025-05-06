@@ -2,7 +2,8 @@
 #include "..\Figures\CFigure.h"
 #include"..\Figures\CCircle.h"
 #include "..\ApplicationManager.h"
-
+#include"..\GUI/Input.h"
+#include"..\GUI/Output.h"
 
 
 AddSelectAction::AddSelectAction(ApplicationManager* pApp) :Action(pApp)
@@ -10,6 +11,7 @@ AddSelectAction::AddSelectAction(ApplicationManager* pApp) :Action(pApp)
 }
 void AddSelectAction::selectfigure(Point point)
 {
+	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
 	CFigure* clickedfigure = pManager->GetFigure(point.x, point.y);
 	if (clickedfigure == nullptr)
@@ -27,7 +29,10 @@ void AddSelectAction::selectfigure(Point point)
 	else
 	{
 		clickedfigure->SetSelected(true);      //selecting another shape with the already selected shape so selecting multiple shapes
-		pOut->PrintMessage("Figure selected");
+        
+        pManager->SetSelectedFigure(clickedfigure); // Use the pManager instance to call the non-static member function
+        pOut->PrintMessage("Figure selected");
+
 	}
 
 	pManager->UpdateInterface();
