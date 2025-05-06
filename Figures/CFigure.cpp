@@ -40,3 +40,6 @@ color CFigure::StringToColor(string str) {
     if (str == "WHITE") return WHITE;
     return BLACK; // Default color
 }
+ color CFigure::GetDrawColor() {
+    return FigGfxInfo.FillClr;
+}

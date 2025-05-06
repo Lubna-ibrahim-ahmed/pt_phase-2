@@ -50,3 +50,48 @@ void CTriangle::Load(ifstream& InFile)
 		FigGfxInfo.isFilled = true;
 	}
 }
+bool CTriangle::IsInside(Point P) const
+{
+	
+	double A = 0.5 * abs(Corner1.x * (Corner2.y - Corner3.y) +
+		Corner2.x * (Corner3.y - Corner1.y) +
+		Corner3.x * (Corner1.y - Corner2.y));
+
+	double A1 = 0.5 * abs(P.x * (Corner2.y - Corner3.y) +
+		Corner2.x * (Corner3.y - P.y) +
+		Corner3.x * (P.y - Corner2.y));
+
+	double A2 = 0.5 * abs(Corner1.x * (P.y - Corner3.y) +
+		P.x * (Corner3.y - Corner1.y) +
+		Corner3.x * (Corner1.y - P.y));
+
+	double A3 = 0.5 * abs(Corner1.x * (Corner2.y - P.y) +
+		Corner2.x * (P.y - Corner1.y) +
+		P.x * (Corner1.y - Corner2.y));
+
+	
+	return abs(A - (A1 + A2 + A3)) <= 0.001;   
+}
+Point CTriangle::getmainposition() const
+{
+	Point centroid;
+	centroid.x = (Corner1.x + Corner2.x + Corner3.x) / 3;
+	centroid.y = (Corner1.y + Corner2.y + Corner3.y) / 3;
+	return centroid;
+}
+void CTriangle::setmainpos(Point p)
+{
+	
+	Point oldCenter;
+	oldCenter.x = (Corner1.x + Corner2.x + Corner3.x) / 3;
+	oldCenter.y = (Corner1.y + Corner2.y + Corner3.y) / 3;
+
+	
+	int dx = p.x - oldCenter.x;
+	int dy = p.y - oldCenter.y;
+
+	// Apply shift
+	Corner1.x += dx; Corner1.y += dy;
+	Corner2.x += dx; Corner2.y += dy;
+	Corner3.x += dx; Corner3.y += dy;
+}

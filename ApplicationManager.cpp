@@ -15,8 +15,9 @@
 #include "Figures/CSquare.h"
 #include "Actions/ClearAllAction.h"
 #include "Actions/PlayAction.h"
-#include "Actions\AddMatchAction.h"
 #include <fstream>
+#include "Actions/SwapAction.h"
+#include "Actions\AddMatchAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -67,7 +68,7 @@ void ApplicationManager::LoadAll(ifstream& InFile) {
 		else if (figType == "CIRCLE") {
 			pFig = new CCircle();
 		}
-		/*else if (figType == "TRIANGLE") {
+		else if (figType == "TRIANGLE") {
 			pFig = new CTriangle();
 		}
 		else if (figType == "HEXAGON") {
@@ -75,7 +76,7 @@ void ApplicationManager::LoadAll(ifstream& InFile) {
 		}
 		else if (figType == "SQUARE") {
 			pFig = new CSquare();
-		}*/
+		}
 		else {
 			continue; // Skip unknown figure types
 		}
@@ -137,15 +138,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case TO_PLAY:
 			pAct = new PlayAction(this);
 			break;
+		case STATUS:	//a click on the status bar ==> no action
+			return;
+		case TO_SWAP:
+			pAct = new SwapAction(this);
+			break;
+			break;
 		case MISSING:
 
 			break;
 		case MATCH:
 			pAct = new AddMatchAction(this);
 			break;
-
-		case STATUS:	//a click on the status bar ==> no action
-			return;
 	}
 	
 	//Execute the created action
@@ -165,7 +169,6 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if(FigCount < MaxFigCount )
 		FigList[FigCount++] = pFig;	
-	
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
@@ -181,7 +184,6 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 			return FigList[i];
 		}
 	}
-
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
 
@@ -199,7 +201,7 @@ void ApplicationManager::PrintFigureInfo()
 	{
 		if (FigList[i]->IsSelected() == true)
 		{
-			selectedcount++;      
+			selectedcount++;       ////lesa mesh metkamela
 
 		}
 	}
@@ -235,6 +237,19 @@ Input *ApplicationManager::GetInput() const
 //Return a pointer to the output
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
+int ApplicationManager::getfigurecount()
+{
+	return FigCount;
+}
+CFigure* ApplicationManager::getfiglistindex(int i) const
+{
+	if (i >= 0 && i <= FigCount)
+	{
+		return FigList[i];
+	}
+	else
+		return nullptr;
+}
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()

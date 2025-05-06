@@ -4,6 +4,7 @@ CHexagon::CHexagon() : CFigure(GfxInfo()) {
 	Center = { 0, 0 };
 }
 
+
 CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
@@ -40,4 +41,24 @@ void CHexagon::Load(ifstream& InFile)
 		FigGfxInfo.FillClr = StringToColor(fillColor);
 		FigGfxInfo.isFilled = true;
 	}
+}
+bool CHexagon::IsInside(Point P) const
+{
+	double distx = P.x - Center.x;
+	double disty = P.y - Center.y;
+	double distance = sqrt(pow(distx, 2) + pow(disty, 2));
+	return distance <= 100;
+}
+Point CHexagon::getmainposition() const
+{
+	return Center;
+}
+void CHexagon::setmainpos(Point p)
+{
+	int dx = p.x - Center.x;
+	int dy = p.y - Center.y;
+
+	Center.x += dx;
+	Center.y += dy;
+
 }

@@ -42,3 +42,27 @@ void CSquare::Load(ifstream& InFile)
 		FigGfxInfo.isFilled = true;
 	}
 }
+bool CSquare::IsInside(Point point) const
+{
+	//const int side = 100;
+	double halfside = 50;  //ask lobna law el side length 100 fe3lan wala
+	double left = Center.x - halfside;
+	double bottom = Center.y + halfside;
+	double right = Center.x + halfside;
+	double top = Center.y - halfside;
+	if (point.x >= left && point.x <= right && point.y >= top && point.y <= bottom)
+	{
+		return true;
+	}
+	else
+		return false;
+		
+}
+Point CSquare::getmainposition() const
+{
+	return Center;
+}
+void CSquare::setmainpos(Point p) 
+{
+	Center = p;
+}

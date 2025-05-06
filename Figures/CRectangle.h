@@ -1,15 +1,15 @@
 #ifndef CRECT_H
 #define CRECT_H
-#include<string>
-#include "CFigure.h"
 
+#include "CFigure.h"
+#include<string>
 class CRectangle : public CFigure
 {
 private:
 	Point Corner1;	
 	Point Corner2;
 public:
-	string ID ="CRectangle";
+	string ID = "CRectangle";
 	string getID() override { return ID; }
 	CRectangle();
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
@@ -17,6 +17,11 @@ public:
 	bool IsInside(Point P) const override;
 	void Save(ofstream& OutFile) override;
 	void Load(ifstream& InFile) override;
+	Point getmainposition() const override;
+	void setmainpos(Point p) override;
+	color GetDrawColor() override {
+		return FigGfxInfo.FillClr;
+	}
 };
 
 #endif

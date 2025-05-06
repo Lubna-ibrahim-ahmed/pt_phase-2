@@ -1,4 +1,4 @@
-#include "AddHexagonAction.h"
+	#include "AddHexagonAction.h"
 #include "..\Figures\CHexagon.h"
 
 #include "..\ApplicationManager.h"
@@ -21,13 +21,14 @@ void AddHexagonAction::ReadActionParameters()
 
 	pIn->GetPointClicked(P1.x, P1.y);
 
+
 	HexaGfxInfo.FillClr = pIn->Getchar(pOut);
 
 
 	HexaGfxInfo.isFilled = true;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
 	HexaGfxInfo.DrawClr = pOut->getCrntDrawColor();
-	
+
 	pOut->ClearStatusBar();
 
 }

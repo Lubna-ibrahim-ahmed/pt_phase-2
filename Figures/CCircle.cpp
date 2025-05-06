@@ -14,7 +14,6 @@ CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxIn
 double getDistance(Point P1, Point P2)
 	{
 		return sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2));
-	
 	}
 bool CCircle::IsInside(Point P) const
 {
@@ -55,4 +54,19 @@ void CCircle::Load(ifstream& InFile)
 		FigGfxInfo.FillClr = StringToColor(fillColor);
 		FigGfxInfo.isFilled = true;
 	}
+}
+Point CCircle::getmainposition() const
+{
+	return Center;
+}
+void CCircle::setmainpos(Point p) 
+{
+	int dx = p.x - Center.x;
+	int dy = p.y - Center.y;
+
+	Center.x += dx;
+	Center.y += dy;
+
+	length.x += dx;
+	length.y += dy;
 }

@@ -167,17 +167,7 @@ color Output::getCrntDrawColor() const	//get current drawing color
 //////////////////////////////////////////////////////////////////////////////////////////
 
 color Output::getCrntFillColor() const	//get current filling color
-{	
-	
-	
-	
-	
-	return UI.FillColor;	
-
-
-
-
-}
+{	return UI.FillColor;	}
 //////////////////////////////////////////////////////////////////////////////////////////
 	
 int Output::getCrntPenWidth() const		//get current pen width

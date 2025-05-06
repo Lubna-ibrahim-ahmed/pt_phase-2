@@ -33,7 +33,8 @@ void AddTriAction::ReadActionParameters()
 
 
 
-	TriGfxInfo.isFilled = false;	//default is not filled
+
+	TriGfxInfo.isFilled = true;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
 	TriGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	TriGfxInfo.FillClr = pIn->Getchar(pOut);
