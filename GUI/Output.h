@@ -6,6 +6,8 @@ class Output	//The application manager should have a pointer to this class
 {
 private:	
 	window* pWind;	//Pointer to the Graphics Window
+protected:
+	string Printed_message;
 public:
 	Output();		
 
@@ -35,6 +37,7 @@ public:
 	color getCrntDrawColor() const;	//get current drwawing color
 	color getCrntFillColor() const;	//get current filling color
 	int getCrntPenWidth() const;		//get current pen width
+	string Output::getPrinted();
 
 	
 	~Output();

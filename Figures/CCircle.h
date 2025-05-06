@@ -14,6 +14,8 @@ public:
 	CCircle(Point, Point, GfxInfo FigureGfxInfo);
 	bool IsInside(Point P) const override;
 	virtual void Draw(Output* pOut) const;
+    CFigure * figcopy() const;
+	virtual void MoveTo(Point newCenter);
 	void CCircle::Save(ofstream& OutFile);
 	void CCircle::Load(ifstream& InFile) override;
 	Point getmainposition() const override;
@@ -21,4 +23,5 @@ public:
 	color GetDrawColor()  override {
 		return FigGfxInfo.FillClr;
 	}
+	
 };

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "CFigure.h"
 #include<string>
 class CTriangle : public CFigure
@@ -7,12 +7,17 @@ private:
 	Point Corner1;
 	Point Corner2;
 	Point Corner3;
+	Point CenterOffset1;
+	Point CenterOffset2;
+	Point CenterOffset3;
+	Point Center;
+
 
 public:
 	string ID = "CTriangle";
 	string getID() override { return ID; }
 	CTriangle();
-	CTriangle(Point, Point,Point, GfxInfo FigureGfxInfo);
+	CTriangle(Point, Point, Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
 	void Save(ofstream& OutFile) override;
 	void Load(ifstream& InFile) override;
@@ -22,4 +27,11 @@ public:
 	color GetDrawColor()  override {
 		return FigGfxInfo.FillClr;
 	}
+	virtual CFigure* figcopy() const;
+	virtual void MoveTo(Point newCenter);
+	Point getcenter();
+	Point Centeroffset1();
+	Point Centeroffset2();
+	Point Centeroffset3();
+
 };

@@ -1,4 +1,4 @@
-#include "CCircle.h"
+﻿#include "CCircle.h"
 #include "CFigure.h"
 
 CCircle::CCircle() : CFigure(GfxInfo()) {
@@ -12,9 +12,9 @@ CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxIn
 	length = P2;
 }
 double getDistance(Point P1, Point P2)
-	{
-		return sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2));
-	}
+{
+	return sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2));
+}
 bool CCircle::IsInside(Point P) const
 {
 	double Radius = getDistance(Center, length);
@@ -24,7 +24,7 @@ bool CCircle::IsInside(Point P) const
 void CCircle::Draw(Output* pOut) const
 {
 	int Radius = getDistance(Center, length);
-	pOut->DrawCir(Center,Radius, FigGfxInfo, IsSelected());
+	pOut->DrawCir(Center, Radius, FigGfxInfo, IsSelected());
 }
 
 void CCircle::Save(ofstream& OutFile)
@@ -59,7 +59,7 @@ Point CCircle::getmainposition() const
 {
 	return Center;
 }
-void CCircle::setmainpos(Point p) 
+void CCircle::setmainpos(Point p)
 {
 	int dx = p.x - Center.x;
 	int dy = p.y - Center.y;
@@ -69,4 +69,16 @@ void CCircle::setmainpos(Point p)
 
 	length.x += dx;
 	length.y += dy;
+}
+
+CFigure* CCircle::figcopy() const {
+	return new CCircle(*this);
+};
+
+void CCircle::MoveTo(Point newCenter) {
+	int Radius = getDistance(Center, length);
+	Center.x = newCenter.x;
+	Center.y = newCenter.y;
+	length.x = Center.x + Radius;
+	length.y = Center.y + Radius;
 }

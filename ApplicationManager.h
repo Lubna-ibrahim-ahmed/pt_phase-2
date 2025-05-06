@@ -21,12 +21,17 @@ private:
 	Input *pIn;
 	Output *pOut;
 
-	CFigure* Clipboard;  //Pointer to copied/cut figure
+	CFigure * Clipboard;
+	CFigure * CutFigure;
+	CFigure * SelectedFigure;
 	
 
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
+
+	void SetCutFigure(CFigure * fig) { CutFigure = fig; }
+	CFigure * GetCutFigure() const { return CutFigure; }
 	
 	// -- Action-Related Functions
 	//Reads the input command from the user and returns the corresponding action type
@@ -47,6 +52,12 @@ public:
 	void clearFigures(); //function to clear all the figures
 	int getfigurecount(); //getter to get the count of the figures
 	CFigure* getfiglistindex(int i) const;//getter to get the index of FigList since its private
+
+	void SetSelectedFigure(CFigure * pFig);
+	CFigure * GetSelectedFigure() const;
+	void SetClipboard(CFigure * fig);
+	CFigure * GetClipboard() const;
+	void DeleteFigure(CFigure * pFig);
 };
 
 #endif

@@ -22,6 +22,8 @@ public:
 	color GetDrawColor() override {
 		return FigGfxInfo.FillClr;
 	}
+	virtual CFigure * figcopy() const;
+	virtual void MoveTo(Point newCenter);
 };
 
 #endif

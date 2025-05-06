@@ -18,18 +18,27 @@
 #include <fstream>
 #include "Actions/SwapAction.h"
 #include "Actions\AddMatchAction.h"
+#include "Actions\CopyAction.h"
+#include "Actions\PasteAction.h"
+#include "Actions\CutAction.h"
+#include "Actions\DeleteAction.h"
+#include"GUI/Output.h"
+
 //Constructor
 ApplicationManager::ApplicationManager()
 {
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
-	
+	CutFigure = nullptr;
 	FigCount = 0;
 		
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
+
+	SelectedFigure = nullptr;
+	Clipboard = nullptr;
 }
 
 //==================================================================================//
@@ -145,12 +154,29 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 			break;
 		case MISSING:
-
 			break;
+
 		case MATCH:
 			pAct = new AddMatchAction(this);
 			break;
+		
+		case TO_COPY:
+			pAct = new CopyAction(this);
+			break;
+
+		case TO_PASTE:
+			pAct = new PasteAction(this);
+			break;
+
+		case TO_CUT:
+			pAct = new CutAction(this);
+			break;
+
+		case TO_DELETE:
+			pAct = new DeleteAction(this);
+			break;
 	}
+
 	
 	//Execute the created action
 	if(pAct != NULL)
@@ -259,4 +285,44 @@ ApplicationManager::~ApplicationManager()
 	delete pIn;
 	delete pOut;
 	
+}
+
+void ApplicationManager::SetClipboard(CFigure * fig) {
+	if (Clipboard) {
+		delete Clipboard;
+		Clipboard = nullptr;
+	}
+
+		if (fig) {
+		Clipboard = fig->figcopy(); // Deep copy
+
+	}
+	
+}
+void ApplicationManager::SetSelectedFigure(CFigure * pFig) {
+		// Select new figure
+		SelectedFigure = pFig;
+
+
+}
+CFigure * ApplicationManager::GetSelectedFigure() const {
+	return SelectedFigure;
+	
+}
+
+CFigure * ApplicationManager::GetClipboard() const {
+	return Clipboard;
+}
+void ApplicationManager::DeleteFigure(CFigure * pFig) {
+	for (int i = 0; i < FigCount; i++) {
+		if (FigList[i] == pFig) {
+			delete FigList[i];
+			
+			for (int j = i; j < FigCount - 1; j++) {
+				FigList[j] = FigList[j + 1];
+			}
+			FigList[--FigCount] = nullptr;
+			break;
+		}
+	}
 }

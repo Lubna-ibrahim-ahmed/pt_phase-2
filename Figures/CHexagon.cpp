@@ -1,4 +1,4 @@
-#include "CHexagon.h"
+﻿#include "CHexagon.h"
 
 CHexagon::CHexagon() : CFigure(GfxInfo()) {
 	Center = { 0, 0 };
@@ -11,7 +11,7 @@ CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 }
 void CHexagon::Draw(Output* pOut) const
 {
-	pOut->DrawHex(Center,FigGfxInfo, IsSelected());
+	pOut->DrawHex(Center, FigGfxInfo, IsSelected());
 }
 
 void CHexagon::Save(ofstream& OutFile)
@@ -61,4 +61,14 @@ void CHexagon::setmainpos(Point p)
 	Center.x += dx;
 	Center.y += dy;
 
+}
+CFigure* CHexagon::figcopy() const {
+	return new CHexagon(*this);
+
+}
+
+void CHexagon::MoveTo(Point newCenter)
+{
+	Center.x = newCenter.x;
+	Center.y = newCenter.y;
 }

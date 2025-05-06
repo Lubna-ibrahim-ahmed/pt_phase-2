@@ -1,4 +1,4 @@
-#include "CSquare.h"
+﻿#include "CSquare.h"
 
 CSquare::CSquare() : CFigure(GfxInfo()) {
 	Center = { 0, 0 };
@@ -56,13 +56,24 @@ bool CSquare::IsInside(Point point) const
 	}
 	else
 		return false;
-		
+
 }
 Point CSquare::getmainposition() const
 {
 	return Center;
 }
-void CSquare::setmainpos(Point p) 
+void CSquare::setmainpos(Point p)
 {
 	Center = p;
+}
+
+
+CFigure* CSquare::figcopy() const {
+	return new CSquare(*this);
+}
+
+void CSquare::MoveTo(Point newCenter) {
+
+	Center = newCenter;
+
 }
